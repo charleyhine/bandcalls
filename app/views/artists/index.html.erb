@@ -1,0 +1,24 @@
+<%- model_class = Artist -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => 'Current Bands' %></h1>
+  <h3><%=t '.title', :default => 'sending personalized voice messages' %></h3>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:band_name) %></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= link_to artist.name, show_artist_path(artist) %></td>
+        <td>
+          <%= link_to t('.action', :default => t("helpers.links.request_call")),
+                      new_user_request_path(artist), :class => 'btn btn-mini' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

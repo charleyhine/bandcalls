@@ -48,11 +48,11 @@
           <div class="container nav-collapse">
             <ul class="nav">
               <% if !current_user && !current_artist %>
-                <li><%= link_to "See All Bands", new_user_registration_path  %></li>
+                <li><%= link_to "See All Bands", artists_path  %></li>
                 <li><%= link_to "Sign up", new_user_registration_path  %></li>
               <% end %>
               <% if current_user %>
-                <li><%= link_to "See All Bands", root_path  %></li>
+                <li><%= link_to "See All Bands", artists_path  %></li>
                 <li><%= link_to "My Requests", "/path2"  %></li>
                 <li><%= link_to 'Sign out', signout_path %></li>
               <% end %>

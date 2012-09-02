@@ -3,7 +3,7 @@ Bandcalls::Application.routes.draw do
   resources :user_requests
 
   resources :artist_calls
-
+  
   match 'artists/incoming' => 'artists#incoming'
   match 'artists/recording' => 'artists#recording'
 
@@ -18,6 +18,10 @@ Bandcalls::Application.routes.draw do
      get "artist_signout", :to => "devise/sessions#destroy"
      get "artist_signup", :to => "devise/registrations#new"
    end
+   
+   match 'user_request/:artist_id' => 'user_requests#new', :as => :new_user_request
+   match 'artists' => 'artists#index'
+   match 'artists/:id' => 'artists#show', :as => :show_artist
    
    
   root :to => "home#index"

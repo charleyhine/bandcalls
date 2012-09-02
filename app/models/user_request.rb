@@ -1,5 +1,5 @@
 class UserRequest < ActiveRecord::Base
-  attr_accessible :user_id, :artist_id
+  attr_accessible :user_id, :artist_id, :copy
   
   has_one :user
   has_one :artist

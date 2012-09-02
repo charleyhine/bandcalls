@@ -24,7 +24,9 @@ class UserRequestsController < ApplicationController
   # GET /user_requests/new
   # GET /user_requests/new.json
   def new
+    @artist = Artist.find(params[:artist_id])
     @user_request = UserRequest.new
+    @user_request.artist = @artist
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +43,7 @@ class UserRequestsController < ApplicationController
   # POST /user_requests.json
   def create
     @user_request = UserRequest.new(params[:user_request])
+    @user_request.user = current_user
 
     respond_to do |format|
       if @user_request.save

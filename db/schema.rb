@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120902070508) do
   create_table "user_requests", :force => true do |t|
     t.integer  "user_id"
     t.integer  "artist_id"
+    t.string   "copy"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
