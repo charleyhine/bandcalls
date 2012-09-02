@@ -18,7 +18,7 @@ class ArtistCall < ActiveRecord::Base
   
   def self.save_recording_url(artist_phone, recording_url)
     artist = Artist.find_by_phone(artist_phone)
-    call = ArtistCall.where(:artist_id = artist.id, :recording_url => '')
+    call = ArtistCall.where(:artist_id => artist.id, :recording_url => '')
     call.recording_url = recording_url
     call.save
   end
