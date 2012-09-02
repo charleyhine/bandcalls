@@ -1,5 +1,7 @@
 Bandcalls::Application.routes.draw do
 
+  match 'artists/incoming' => 'artists#incoming'
+
   devise_for :users
   devise_scope :user do
      get "signout", :to => "devise/sessions#destroy"
@@ -11,6 +13,7 @@ Bandcalls::Application.routes.draw do
      get "artist_signout", :to => "devise/sessions#destroy"
      get "artist_signup", :to => "devise/registrations#new"
    end
+   
    
   root :to => "home#index"
   
