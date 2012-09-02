@@ -17,7 +17,7 @@
         <td><%=l user_request.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.accept")),
-                      message_script_path(user_request), :class => 'btn btn-mini btn-success' %>
+                      create_artist_call_path(user_request), :class => 'btn btn-mini btn-success' %>
           <%= link_to t('.destroy', :default => t("helpers.links.decline")),
                       user_request_path(user_request),
                       :method => :delete,

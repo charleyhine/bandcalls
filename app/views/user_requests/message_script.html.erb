@@ -1,17 +1,15 @@
 <%- model_class = UserRequest -%>
 <div class="page-header">
-  
-  <h3><%=t '.title', :default => @user_request.user.first_name + ' ' + @user_request.user.last_name + " would like you to say the following" %></h3>
+  <h3><%=t '.title', :default => "1. We're calling " + @user_request.artist.phone + ". Get ready to record." %></h3>
+  <h3><%=t '.title', :default => "2. After the beep, " + @user_request.user.first_name + ' ' + @user_request.user.last_name + " would like you to say..." %></h3>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong>After the beep say:</strong></dt>
+  <dt><strong>AFTER BEEP:</strong></dt>
   <dd>"<%= @user_request.copy %>"</dd>
 </dl>
 
 <div class="form-actions">
-  <%= link_to t('.success', :default => "I'm Ready (call me)"),
-              root_path, :class => 'btn btn-success' %>
   <%= link_to t('.destroy', :default => t("Cancel request")),
               user_request_path(@user_request),
               :method => 'delete',

@@ -1,14 +1,4 @@
 class ArtistCallsController < ApplicationController
-  # GET /artist_calls
-  # GET /artist_calls.json
-  def index
-    @artist_calls = ArtistCall.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @artist_calls }
-    end
-  end
   
   def operator
     response = Twilio::TwiML::Response.new do |r|
@@ -17,7 +7,7 @@ class ArtistCallsController < ApplicationController
       r.Say 'thank you', :voice => 'woman'
       r.Hangup ''
     end
-    puts response.text
+
     render :xml => response.text
   end
   
@@ -27,7 +17,18 @@ class ArtistCallsController < ApplicationController
     
     ArtistCall.add_recording_url(artist_phone, recording_url)
       
-    render :nothing => true
+    render :xml => 'recieved'
+  end
+  
+  # GET /artist_calls
+  # GET /artist_calls.json
+  def index
+    @artist_calls = ArtistCall.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @artist_calls }
+    end
   end
 
   # GET /artist_calls/1
@@ -60,11 +61,13 @@ class ArtistCallsController < ApplicationController
   # POST /artist_calls
   # POST /artist_calls.json
   def create
-    @artist_call = ArtistCall.new(params[:artist_call])
+    @user_request = UserRequest.find(params[:user_request_id])
+    @artist_call = ArtistCall.new(user_request: @user_request)
 
     respond_to do |format|
       if @artist_call.save
-        format.html { redirect_to @artist_call, notice: 'Artist call was successfully created.' }
+        @artist_call.place_call
+        format.html { redirect_to message_script_path, notice: 'Call initiated!' }
         format.json { render json: @artist_call, status: :created, location: @artist_call }
       else
         format.html { render action: "new" }
