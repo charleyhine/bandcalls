@@ -1,6 +1,7 @@
 Bandcalls::Application.routes.draw do
 
   match 'artists/incoming' => 'artists#incoming'
+  match 'artists/recording' => 'artists#recording'
 
   devise_for :users
   devise_scope :user do
