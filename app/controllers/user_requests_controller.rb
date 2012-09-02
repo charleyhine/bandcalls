@@ -2,12 +2,25 @@ class UserRequestsController < ApplicationController
   # GET /user_requests
   # GET /user_requests.json
   def index
-    @user_requests = UserRequest.all
+    @user_requests = current_user.user_requests
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @user_requests }
     end
+  end
+  
+  def artist_index
+    @user_requests = current_artist.user_requests
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @user_requests }
+    end
+  end
+  
+  def message_script
+    @user_request = UserRequest.find(params[:user_request_id])
   end
 
   # GET /user_requests/1
@@ -26,7 +39,6 @@ class UserRequestsController < ApplicationController
   def new
     @artist = Artist.find(params[:artist_id])
     @user_request = UserRequest.new
-    @user_request.artist = @artist
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +55,8 @@ class UserRequestsController < ApplicationController
   # POST /user_requests.json
   def create
     @user_request = UserRequest.new(params[:user_request])
+    @artist = Artist.find(params[:artist_id])
+    @user_request.artist = @artist
     @user_request.user = current_user
 
     respond_to do |format|

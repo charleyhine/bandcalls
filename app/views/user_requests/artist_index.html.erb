@@ -1,11 +1,11 @@
 <%- model_class = UserRequest -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => 'My message requests' %></h1>
+  <h1><%=t '.title', :default => 'Request Queue' %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:artist_id) %></th>
+      <th>Fan name</th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -13,10 +13,12 @@
   <tbody>
     <% @user_requests.each do |user_request| %>
       <tr>
-        <td><%= user_request.artist.name %></td>
+        <td><%= user_request.user.first_name + ' ' + user_request.user.last_name%></td>
         <td><%=l user_request.created_at %></td>
         <td>
-          <%= link_to t('.destroy', :default => t("helpers.links.Cancel_request")),
+          <%= link_to t('.edit', :default => t("helpers.links.accept")),
+                      message_script_path(user_request), :class => 'btn btn-mini btn-success' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.decline")),
                       user_request_path(user_request),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

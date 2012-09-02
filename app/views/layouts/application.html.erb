@@ -53,11 +53,11 @@
               <% end %>
               <% if current_user %>
                 <li><%= link_to "See All Bands", artists_path  %></li>
-                <li><%= link_to "My Requests", "/path2"  %></li>
+                <li><%= link_to "My Requests", user_requests_path  %></li>
                 <li><%= link_to 'Sign out', signout_path %></li>
               <% end %>
               <% if current_artist %>
-                <li><%= link_to "See All Requests", root_path  %></li>
+                <li><%= link_to "Request Queue", artist_requests_path  %></li>
                 <li><%= link_to 'Sign out', signout_path %></li>
               <% end %>
             </ul>

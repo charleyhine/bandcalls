@@ -9,6 +9,5 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone
   # attr_accessible :title, :body
 
-  def call
-  end
+  has_many :user_requests
 end

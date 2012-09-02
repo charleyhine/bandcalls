@@ -19,7 +19,11 @@ Bandcalls::Application.routes.draw do
      get "artist_signup", :to => "devise/registrations#new"
    end
    
-   match 'user_request/:artist_id' => 'user_requests#new', :as => :new_user_request
+   match 'artists/requests' => 'user_requests#artist_index', :as => :artist_requests
+   match 'message_script/:user_request_id' => 'user_requests#message_script', :as => :message_script
+   
+   match 'user_request/new/:artist_id' => 'user_requests#new', :as => :new_user_request
+   
    match 'artists' => 'artists#index'
    match 'artists/:id' => 'artists#show', :as => :show_artist
    
