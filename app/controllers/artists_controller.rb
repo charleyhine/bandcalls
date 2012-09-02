@@ -2,7 +2,9 @@ class ArtistsController < ApplicationController
   def incoming
     response = Twilio::TwiML::Response.new do |r|
       r.Say 'read the message on your screen for your fan. press the star key when finished.', :voice => 'woman'
-      r.Record '', :action => BASE_URL + '/artists/recording'
+      r.Record '', :action => BASE_URL + '/artists/recording', :maxLength => '120', :finishOnKey = '*'
+      r.Say 'thank you', :voice => 'woman'
+      r.Hangup ''
     end
     puts response.text
     render :xml => response.text
