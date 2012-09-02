@@ -15,7 +15,7 @@ class ArtistsController < ApplicationController
     @account = @client.account
     @message = @account.sms.messages.create({
       :from => '+14157428595',
-      :to => '+16157915900'
+      :to => '+16157915900',
       :body => url
       })
       
