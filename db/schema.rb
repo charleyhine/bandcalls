@@ -11,14 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902065553) do
+ActiveRecord::Schema.define(:version => 20120902070508) do
 
   create_table "artist_calls", :force => true do |t|
-    t.integer  "artist_id"
-    t.integer  "user_id"
-    t.integer  "recording_url"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "user_request_id"
+    t.string   "recording_url"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "artists", :force => true do |t|
@@ -40,6 +39,13 @@ ActiveRecord::Schema.define(:version => 20120902065553) do
 
   add_index "artists", ["email"], :name => "index_artists_on_email", :unique => true
   add_index "artists", ["reset_password_token"], :name => "index_artists_on_reset_password_token", :unique => true
+
+  create_table "user_requests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "first_name",             :default => "", :null => false

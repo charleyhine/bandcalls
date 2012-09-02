@@ -1,5 +1,7 @@
 Bandcalls::Application.routes.draw do
 
+  resources :user_requests
+
   resources :artist_calls
 
   match 'artists/incoming' => 'artists#incoming'
