@@ -1,17 +1,20 @@
-<%= form_for(@artist_call) do |f| %>
-  <% if @artist_call.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@artist_call.errors.count, "error") %> prohibited this artist_call from being saved:</h2>
-
-      <ul>
-      <% @artist_call.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= form_for @artist_call, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :user_request_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :user_request_id, :class => 'number_field' %>
     </div>
-  <% end %>
+  </div>
+  <div class="control-group">
+    <%= f.label :recording_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :recording_url, :class => 'text_field' %>
+    </div>
+  </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                artist_calls_path, :class => 'btn' %>
   </div>
 <% end %>
