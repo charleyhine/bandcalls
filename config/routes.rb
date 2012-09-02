@@ -1,4 +1,13 @@
 Bandcalls::Application.routes.draw do
+  
+  devise_for :users
+  devise_scope :user do
+     get "signout", :to => "devise/sessions#destroy"
+     get "signup", :to => "devise/registrations#new"
+   end
+   
+  root :to => "home#index"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -26,6 +26,7 @@ group :assets do
 end
 
 gem 'twilio-ruby'
+gem 'devise'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
