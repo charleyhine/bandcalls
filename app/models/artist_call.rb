@@ -11,7 +11,7 @@ class ArtistCall < ActiveRecord::Base
     @call = @client.account.calls.create(
       :from => '+14157428595',
       :to => '+1' + self.artist.phone,
-      :url => BASE_URL + '/artists/operator'
+      :url => BASE_URL + '/twilio/operator'
       ) 
   end
   
