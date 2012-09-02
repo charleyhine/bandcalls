@@ -1,7 +1,7 @@
 class ArtistCall < ActiveRecord::Base
   attr_accessible :place_call
   
-  has_one :user_request
+  belongs_to :user_request
   has_one :artist, :through => :user_request
   has_one :user, :through => :user_request
   
