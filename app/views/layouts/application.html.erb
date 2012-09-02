@@ -49,7 +49,7 @@
             <ul class="nav">
               <% if !current_user && !current_artist %>
                 <li><%= link_to "See All Bands", new_user_registration_path  %></li>
-                <li><%= link_to "Signup", new_user_registration_path  %></li>
+                <li><%= link_to "Sign up", new_user_registration_path  %></li>
               <% end %>
               <% if current_user %>
                 <li><%= link_to "See All Bands", root_path  %></li>
@@ -94,7 +94,7 @@
 
       <footer>
         <p>&copy; Company 2012</p>
-        <div class="pull-right"><%= link_to 'Artist Signup', new_artist_registration_path %></div>
+        <% if !current_artist %><div class="pull-right"><%= link_to 'Artist sign up', new_artist_registration_path %></div><% end %>
       </footer>
 
     </div> <!-- /container -->
