@@ -4,8 +4,8 @@ Bandcalls::Application.routes.draw do
 
   resources :artist_calls
   
-  match 'artists/incoming' => 'artists#incoming'
-  match 'artists/recording' => 'artists#recording'
+  match 'twilio/operator' => 'artist_calls#operator'
+  match 'twilio/recording' => 'artist_calls#recording'
 
   devise_for :users
   devise_scope :user do

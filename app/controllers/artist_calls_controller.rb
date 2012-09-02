@@ -9,6 +9,26 @@ class ArtistCallsController < ApplicationController
       format.json { render json: @artist_calls }
     end
   end
+  
+  def operator
+    response = Twilio::TwiML::Response.new do |r|
+      r.Say 'read the message on your screen for your fan. press the star key when finished.', :voice => 'woman'
+      r.Record '', :action => BASE_URL + '/artists/recording', :maxLength => '120', :finishOnKey => '*'
+      r.Say 'thank you', :voice => 'woman'
+      r.Hangup ''
+    end
+    puts response.text
+    render :xml => response.text
+  end
+  
+  def incoming_recording
+    artist_phone = params['To'][2..11]
+    recording_url = params['RecordingUrl']
+    
+    ArtistCall.add_recording_url(artist_phone, recording_url)
+      
+    render :nothing => true
+  end
 
   # GET /artist_calls/1
   # GET /artist_calls/1.json
