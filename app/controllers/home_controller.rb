@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @call = @client.account.calls.create(
       :from => '+14157428595',
       :to => '+16157915900',
-      :url => BASE_URL + '/artist/incoming'
+      :url => BASE_URL + '/artists/incoming'
     )
   end
 end
