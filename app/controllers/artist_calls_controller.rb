@@ -1,4 +1,5 @@
 class ArtistCallsController < ApplicationController
+  before_filter :authenticate_artist!
   
   def entry
     response = Twilio::TwiML::Response.new do |r|
@@ -22,6 +23,10 @@ class ArtistCallsController < ApplicationController
     end
       
     render :xml => response.text
+  end
+  
+  def message_script
+    @user_request = UserRequest.find(params[:user_request_id])
   end
   
   # GET /artist_calls
@@ -70,7 +75,6 @@ class ArtistCallsController < ApplicationController
 
     respond_to do |format|
       if @artist_call.save
-        @artist_call.place_call
         format.html { redirect_to message_script_path, notice: "We're calling " + @user_request.artist.phone + "! Get ready to record." }
         format.json { render json: @artist_call, status: :created, location: @artist_call }
       else

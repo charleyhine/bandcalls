@@ -1,4 +1,6 @@
 class UserRequestsController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /user_requests
   # GET /user_requests.json
   def index
@@ -17,10 +19,6 @@ class UserRequestsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @user_requests }
     end
-  end
-  
-  def message_script
-    @user_request = UserRequest.find(params[:user_request_id])
   end
 
   # GET /user_requests/1
@@ -61,7 +59,7 @@ class UserRequestsController < ApplicationController
 
     respond_to do |format|
       if @user_request.save
-        format.html { redirect_to @user_request, notice: 'User request was successfully created.' }
+        format.html { redirect_to user_requests_path, notice: @user_request.artist.name + ' has been notified!' }
         format.json { render json: @user_request, status: :created, location: @user_request }
       else
         format.html { render action: "new" }

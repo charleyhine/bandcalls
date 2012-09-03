@@ -5,15 +5,7 @@ class ArtistCall < ActiveRecord::Base
   has_one :artist, :through => :user_request
   has_one :user, :through => :user_request
   
-  def place_call
-    @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
-    @call = @client.account.calls.create(
-      :from => '+14157428595',
-      :to => '+1' + self.artist.phone,
-      :url => BASE_URL + '/twilio/entry'
-      ) 
-  end
+  after_create :place_call
   
   def self.add_recording_url(artist_phone, recording_url)
     artist = Artist.find_by_phone(artist_phone)
@@ -22,5 +14,15 @@ class ArtistCall < ActiveRecord::Base
     call.save
     
     call.user_request.notify_user
+  end
+  
+  def place_call
+    @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+
+    @call = @client.account.calls.create(
+      :from => '+14157428595',
+      :to => '+1' + self.artist.phone,
+      :url => BASE_URL + '/twilio/entry'
+      ) 
   end
 end

@@ -49,7 +49,7 @@
             <ul class="nav">
               <% if !current_user && !current_artist %>
                 <li><%= link_to "Browse Bands", artists_path  %></li>
-                <li><%= link_to "Sign up", new_user_registration_path  %></li>
+                <li><%= link_to "Sign In", new_user_session_path  %></li>
               <% end %>
               <% if current_user %>
                 <li><%= link_to "Browse Bands", artists_path  %></li>
@@ -79,22 +79,22 @@
               <%= yield %>
             </div>
             <div class="span3">
+              <% if !current_artist %>
               <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
+                <h3>Band or artist?</h3>
                 <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li><%= link_to "Link1", "/path1"  %></li>
-                  <li><%= link_to "Link2", "/path2"  %></li>
-                  <li><%= link_to "Link3", "/path3"  %></li>
+                  <li class="nav-header">Engage key fans!</li>
+                  <li><%= link_to 'Artist sign up', new_artist_registration_path %></li>
+                  <li><%= link_to 'Artist sign in', new_artist_session_path %></li>
                 </ul>
               </div><!--/.well -->
             </div><!--/span-->
+            <% end %>
         </div><!--/row-->
       </div><!--/content-->
 
       <footer>
-        <p>&copy; Company 2012</p>
-        <% if !current_artist %><div class="pull-right"><%= link_to 'Artist sign up', new_artist_registration_path %></div><% end %>
+        <p>by <%= link_to '@charley', 'http://twitter.com/charley' %></p>
       </footer>
 
     </div> <!-- /container -->
