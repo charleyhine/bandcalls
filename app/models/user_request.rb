@@ -15,7 +15,7 @@ class UserRequest < ActiveRecord::Base
     @message = @account.sms.messages.create({
       :from => '+14157428595',
       :to => '+1' + self.user.phone,
-      :body => self.artist.name + ' recorded something just for you -> ' + BASE_URL + '/artist_calls/' + self.artist_call.id.to_s
+      :body => self.artist.name + ' recorded something just for you -> ' + BASE_URL + '/user_requests/' + self.id.to_s
       })
   end
   

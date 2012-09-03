@@ -1,18 +1,8 @@
-<%- model_class = UserRequest -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => 'Request sent to ' + @user_request.artist.name + '...' %></h1>
-  <h3><%=t '.title', :default => "their response will be sent to " + @user_request.user.phone %></h3>
+  <h1><%=t '.title', :default => "From " + @user_request.artist.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong>Message:</strong></dt>
-  <dd><%= @user_request.copy %></dd>
+  <%= link_to t('.back', :default => t("helpers.links.click_to_listen")),
+              @user_request.artist_call.recording_url, :class => 'btn btn-large btn-info'  %>
 </dl>
-
-<div class="form-actions">
-  <%= link_to t('.destroy', :default => t("Cancel request")),
-              user_request_path(@user_request),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
-</div>
