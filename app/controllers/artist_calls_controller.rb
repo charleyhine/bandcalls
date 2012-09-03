@@ -71,7 +71,7 @@ class ArtistCallsController < ApplicationController
     respond_to do |format|
       if @artist_call.save
         @artist_call.place_call
-        format.html { redirect_to message_script_path, notice: 'Call initiated!' }
+        format.html { redirect_to message_script_path, notice: "We're calling " + @user_request.artist.phone + "! Get ready to record." }
         format.json { render json: @artist_call, status: :created, location: @artist_call }
       else
         format.html { render action: "new" }

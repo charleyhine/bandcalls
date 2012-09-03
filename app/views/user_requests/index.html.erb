@@ -1,6 +1,6 @@
 <%- model_class = UserRequest -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => 'My message requests' %></h1>
+  <h1><%=t '.title', :default => 'My Requests' %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -16,11 +16,16 @@
         <td><%= user_request.artist.name %></td>
         <td><%=l user_request.created_at %></td>
         <td>
+          <% if user_request.artist_call.nil? %>
           <%= link_to t('.destroy', :default => t("helpers.links.Cancel_request")),
                       user_request_path(user_request),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+           <% else %>
+           <%= link_to t('.edit', :default => t("helpers.links.Listen_to_message")),
+                       user_request.artist_call.recording_url, :class => 'btn btn-mini btn-success' %>
+           <% end %>
         </td>
       </tr>
     <% end %>

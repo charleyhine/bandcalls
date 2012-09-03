@@ -1,7 +1,6 @@
 <%- model_class = UserRequest -%>
 <div class="page-header">
-  <h3><%=t '.title', :default => "1. We're calling " + @user_request.artist.phone + ". Get ready to record." %></h3>
-  <h3><%=t '.title', :default => "2. After the beep, " + @user_request.user.first_name + ' ' + @user_request.user.last_name + " would like you to say..." %></h3>
+  <h3><%=t '.title', :default => "After the beep, " + @user_request.user.first_name + ' ' + @user_request.user.last_name + " would like you to say..." %></h3>
 </div>
 
 <dl class="dl-horizontal">
