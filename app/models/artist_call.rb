@@ -1,5 +1,5 @@
 class ArtistCall < ActiveRecord::Base
-  attr_accessible :place_call, :user_request
+  attr_accessible :place_call, :user_request, :recording_url
   
   belongs_to :user_request
   has_one :artist, :through => :user_request
@@ -17,7 +17,7 @@ class ArtistCall < ActiveRecord::Base
   
   def self.add_recording_url(artist_phone, recording_url)
     artist = Artist.find_by_phone(artist_phone)
-    call = ArtistCall.where(:artist_id => artist.id, :recording_url => '')
+    call = ArtistCall.where(:artist_id => artist.id, :recording_url => nil)
     call.recording_url = recording_url
     call.save
   end
