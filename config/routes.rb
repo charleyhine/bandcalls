@@ -3,8 +3,8 @@ Bandcalls::Application.routes.draw do
 
   resources :artist_calls
   
-  match 'twilio/entry' => 'artist_calls#entry'
-  match 'twilio/recording' => 'artist_calls#recording'
+  match 'twilio/entry' => 'voice#entry'
+  match 'twilio/recording' => 'voice#recording'
 
   devise_for :users
   devise_scope :user do
@@ -17,8 +17,6 @@ Bandcalls::Application.routes.draw do
      get "artist_signout", :to => "devise/sessions#destroy"
      get "artist_signup", :to => "devise/registrations#new"
    end
-   
-   
    
    match 'artists/requests' => 'artist_calls#artist_index', :as => :artist_requests
    match 'message_script/:user_request_id' => 'artist_calls#message_script', :as => :message_script
