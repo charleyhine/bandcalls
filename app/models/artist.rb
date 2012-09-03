@@ -10,4 +10,5 @@ class Artist < ActiveRecord::Base
   # attr_accessible :title, :body
   
   has_many :user_requests
+  has_many :artist_calls, :through => :user_requests
 end
