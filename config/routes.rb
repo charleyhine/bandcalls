@@ -20,7 +20,7 @@ Bandcalls::Application.routes.draw do
    
    
    
-   match 'artists/requests' => 'user_requests#artist_index', :as => :artist_requests
+   match 'artists/requests' => 'artist_calls#artist_index', :as => :artist_requests
    match 'message_script/:user_request_id' => 'artist_calls#message_script', :as => :message_script
    
    match 'artist_calls/create/:user_request_id' => 'artist_calls#create', :as => :create_artist_call

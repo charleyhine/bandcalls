@@ -25,6 +25,15 @@ class ArtistCallsController < ApplicationController
     render :xml => response.text
   end
   
+  def artist_index
+    @user_requests = current_artist.user_requests
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @user_requests }
+    end
+  end
+  
   def message_script
     @user_request = UserRequest.find(params[:user_request_id])
   end

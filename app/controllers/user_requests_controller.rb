@@ -11,15 +11,6 @@ class UserRequestsController < ApplicationController
       format.json { render json: @user_requests }
     end
   end
-  
-  def artist_index
-    @user_requests = current_artist.user_requests
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @user_requests }
-    end
-  end
 
   # GET /user_requests/1
   # GET /user_requests/1.json
