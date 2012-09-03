@@ -20,5 +20,7 @@ class ArtistCall < ActiveRecord::Base
     call = artist.artist_calls.last
     call.recording_url = recording_url
     call.save
+    
+    call.user_request.notify_user
   end
 end
