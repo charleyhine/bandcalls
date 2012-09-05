@@ -13,7 +13,7 @@
   <tbody>
     <% @artists.each do |artist| %>
       <tr>
-        <td><%= link_to artist.name, show_artist_path(artist) %></td>
+        <td><%= artist.name %></td>
         <td>
           <%= link_to t('.action', :default => t("helpers.links.request_call")),
                       new_user_request_path(artist), :class => 'btn btn-mini' %>
