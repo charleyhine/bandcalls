@@ -21,7 +21,7 @@ Bandcalls::Application.routes.draw do
    match 'artists/requests' => 'artist_calls#artist_index', :as => :artist_requests
    match 'script/:user_request_id' => 'artist_calls#message_script', :as => :message_script
    
-   match '/:user_request_id' => 'user_requests#show', :as => :user_request
+   match '/listen/:id' => 'user_requests#show'
    
    match 'artist_calls/create/:user_request_id' => 'artist_calls#create', :as => :create_artist_call
    match 'user_request/new/:artist_id' => 'user_requests#new', :as => :new_user_request
