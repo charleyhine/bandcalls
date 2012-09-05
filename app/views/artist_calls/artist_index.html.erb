@@ -26,7 +26,7 @@
                       :class => 'btn btn-mini btn-danger' %>
           <% else %>
           <%= link_to t('.edit', :default => t("helpers.links.view")),
-                      user_request_path(user_request), :class => 'btn btn-mini btn-info' %>
+                      artist_call_path(user_request.artist_call), :class => 'btn btn-mini btn-info' %>
           <% end %>
         </td>
       </tr>
