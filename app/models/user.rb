@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
 
   has_many :user_requests
   
+  validates_presence_of :first_name, :last_name, :phone
+  
+  validates_length_of :phone, :in => 10..10, :message => " should be 10 digits e.g. 3037256927"
+  
   def full_name
     return self.first_name + ' ' + self.last_name
   end
