@@ -29,7 +29,6 @@ gem "twitter-bootstrap-rails"
 gem 'twilio-ruby'
 gem 'devise'
 gem 'jquery-rails'
-gem 'omniauth-facebook'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
